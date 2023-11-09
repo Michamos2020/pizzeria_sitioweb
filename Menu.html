@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mexipizzas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 15px;
+            font-size: 18px;
+            background-color: #e74c3c;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #c0392b;
+        }
+
+        section {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 60px;
+        }
+
+        .menu-item {
+            display: inline-block;
+            margin: 20px;
+            text-align: left;
+            width: 250px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .precio {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 18px;
+        }
+
+        #ordenar-spinner {
+            margin-bottom: 20px;
+        }
+
+        #botones-clasificacion {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .redes-sociales {
+            margin-top: 20px;
+        }
+
+        .redes-sociales a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+   
+
+        .redes-sociales {
+            margin-top: 20px;
+        }
+
+        .redes-sociales a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mexipizzas</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="menu.html">Menú</a>
+        <a href="Carrito.html">Carrito</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <section id="menu">
+        <h2>Nuestro Menú</h2>
+
+            <!-- Elementos del menú -->
+        <div class="menu-item">
+            <img src="img/margarita.jpg" alt="Pizza Margarita">
+            <h3>Pizza Margarita</h3>
+            <p>Tomate, mozzarella, albahaca.</p>
+            <p class="precio">$199</p>
+        </div>
+
+        <div class="menu-item">
+            <img src="img/peperoni.jpg" alt="Pizza Pepperoni">
+            <h3>Pizza Pepperoni</h3>
+            <p>Pepperoni, tomate, mozzarella.</p>
+            <p class="precio">$12.99</p>
+        </div>
+
+        <div class="menu-item">
+            <img src="img/vegetales.jpg" alt="Pizza Veggie">
+            <h3>Pizza Veggie</h3>
+            <p>Pimientos, champiñones, cebolla, tomate.</p>
+            <p class="precio">$11.99</p>
+        
+        </div>
+        <div class="menu-item">
+            <img src="img/carnivora.jpg" alt="Pizza Veggie">
+            <h3>Pizza Carnes</h3>
+            <p>Cerdo, Ave, Res, tomate.</p>
+            <p class="precio">$399</p>
+        </div>
+        <div class="menu-item">
+            <img src="img/quesito.jpeg" alt="Pizza Veggie">
+            <h3>Pizza Tres Quesos</h3>
+            <p>mozzarella, Gouda, Parmesano, tomate.</p>
+            <p class="precio">$259</p>
+        </div>
+        <div class="menu-item">
+            <img src="img/salvajes.jpg" alt="Pizza Veggie">
+            <h3>Pizza Salvaje</h3>
+            <p>Pimientos, champiñones, cebolla, tomate, carnes, rajas</p>
+            <p class="precio">$289</p>
+        </div>
+        <!-- Selector para ordenar por precio -->
+        <div id="ordenar-spinner">
+            <label for="ordenar">Ordenar por precio:</label>
+            <select id="ordenar">
+                <option value="asc">Menor a Mayor</option>
+                <option value="desc">Mayor a Menor</option>
+            </select>
+            <button onclick="ordenarPorPrecio()">Ordenar</button>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2023 PizzaPlace. Todos los derechos reservados.</p>
+
+        <div class="redes-sociales">
+            <a href="https://www.facebook.com/tupagina" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/tupagina" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/tupagina" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+    <script>
+        // Función para ordenar elementos del menú por precio
+        function ordenarPorPrecio() {
+            var orden = document.getElementById('ordenar').value;
+            var menuItems = document.querySelectorAll('.menu-item');
+            var menuArray = Array.from(menuItems);
+
+            menuArray.sort(function(a, b) {
+                var precioA = parseFloat(a.querySelector('.precio').innerText.replace('$', ''));
+                var precioB = parseFloat(b.querySelector('.precio').innerText.replace('$', ''));
+
+                if (orden === 'asc') {
+                    return precioA - precioB;
+                } else {
+                    return precioB - precioA;
+                }
+            });
+
+            var menu = document.getElementById('menu');
+            menuArray.forEach(function(item) {
+                menu.appendChild(item);
+            });
+        }
+    </script>
+
+</body>
+</html>
